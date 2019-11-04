@@ -1,0 +1,17 @@
+<div class="d-mask {{styleClass}}">
+  <div class="d-container" [@animation]="dailogState" (@animation.done)="handleAnimationDone()">
+    <div class="d-warp">
+      <div class="d-header">
+        <h5>{{title}}</h5>
+        <span class="d-close" (click)="handleCloseClick()"></span>
+      </div>
+      <div class="d-content">
+        <ng-content></ng-content>
+      </div>
+      <div class="d-footer" *ngIf="showFooter">
+        <button type="button" pButton [label]="cancelTxt" class="ui-button-secondary" (click)="handleCloseClick()"></button>
+        <button type="button" pButton [label]="confirmTxt"  (click)="handleConfirmClick()"></button>
+      </div>
+    </div>
+  </div>
+</div>

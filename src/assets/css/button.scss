@@ -1,0 +1,45 @@
+.blue {
+    outline: 0;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+    background: #1985D5;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    &:hover {
+        background: #37A9FE;
+    }
+}
+
+.return {
+    outline: 0;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+    background: #E6F4FF;
+    border: 1px solid #1985D5;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 14px;
+    color: #1985D5;
+    text-align: center;
+    &:hover {
+        background: #C0E3FF;
+    }
+}
+
+.cancel {
+    outline: 0;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+    border: 1px solid #1985D5;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 14px;
+    color: #1985D5;
+    text-align: center;
+    &:hover {
+        background: #D9EFFF;
+    }
+}

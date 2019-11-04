@@ -1,0 +1,35 @@
+<div class="bg">
+    <div class="logo"></div>
+    <div class="content">
+        <div class="text">
+            <p>识别 • 标识 • 关联 • 解析</p>
+            <p>鉴权 • 跟踪 • 交易 • 分账</p>
+        </div>
+        <div class="login-box">
+            <h5>用户登录</h5>
+            <form class="login" [isliFormValidMsg]="errorMsg">
+                <p class="error" *ngIf="errorFlag">{{errorFlag}}</p>
+                <div class="user-name">
+                    <i></i>
+                    <input required type="text" autocomplete="off" size="30" name="username" [(ngModel)]="userInfo.username" placeholder="登录账号"
+                    />
+                    <mpr-form-control-valid controlName="username"></mpr-form-control-valid>
+                </div>
+                <div class="pass-word">
+                    <i></i>
+                    <input required type="password" autocomplete="off" size="30" name="password" [(ngModel)]="userInfo.password" placeholder="登录密码"
+                    />
+                    <mpr-form-control-valid controlName="password"></mpr-form-control-valid>
+                </div>
+                <div class="btn-submit">
+                    <button (click)="handleLoginClick()">登&nbsp;&nbsp;录</button>
+                </div>
+            </form>
+            <ul>
+                <li class="weixin"></li>
+                <li class="qq"></li>
+                <li class="sina"></li>
+            </ul>
+        </div>
+    </div>
+</div>
