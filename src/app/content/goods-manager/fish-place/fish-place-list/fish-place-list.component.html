@@ -1,0 +1,42 @@
+<div>
+  <div class="search ui-g">
+    <div class="ui-g-3">
+      <input type="text" pInputText placeholder="请输入钓点名称" [(ngModel)]="classifyName">
+    </div>
+  </div>
+  <div class="table-list">
+    <p-table>
+      <ng-template pTemplate="header">
+        <tr>
+          <th width="10%">序号</th>
+          <th width="30%">名称</th>
+          <th width="20%">常见鱼类</th>
+          <th width="20%">更新时间</th>
+          <th width="10%">操作</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{(pagingBoxObj.page-1)*pagingBoxObj.rows + rowIndex+1}}</td>
+          <td>
+            <img src="{{rowData.icon}}" />
+            <p title="{{rowData.name}}">{{rowData.name}}</p>
+          </td>
+          <td>
+            {{rowData.price}}
+          </td>
+          <td>
+            <span class="fish-place" *ngFor="let name of rowData.fishPlaces">{{name}}</span>
+          </td>
+          <td>
+            {{rowData.updateTime}}
+          </td>
+          <td>
+            <i>编辑</i>
+            <i>删除</i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

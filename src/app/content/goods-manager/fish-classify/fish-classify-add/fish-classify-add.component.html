@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12 header">基本信息</div>
+    <div class="ui-g-12">
+      <div class="ui-g-1">名称</div>
+      <input type="text" pInputTxet>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-1">图标</div>
+      <div class="ui-g-11">
+        <img></img>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-1">价格</div>
+      <div class="ui-g-3">
+
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-1">钓点</div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-1">简介</div>
+      <div class="ui-g-6">
+        <textarea [rows]="5" [cols]="30" maxlength="500" required pInputTextarea appTrim autoResize="autoResize"
+          name="introduce" [(ngModel)]="basicInfo.introduce" [readOnly]="getReadOnly('introduce')"
+          placeholder="请输入游戏介绍"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12 header">追加描述</div>
+    <div class="ui-g-12">
+      <div class="ui-g-4"></div>
+      <div class="ui-g-8"></div>
+    </div>
+  </div>
+</div>
