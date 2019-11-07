@@ -1,15 +1,18 @@
 <div class="content">
-  <app-header></app-header>
-  <div class="content-bd">
-    <div class="content-bread" *ngIf="navItems.length > 1">
-      <p>我的位置：</p>
-      <p-breadcrumb [model]="navItems"></p-breadcrumb>
+    <app-header></app-header>
+    <div class="content-bd p-grid">
+        <div
+            class="content-bread p-col-12"
+            *ngIf="navItems.length > 1"
+        >
+            <p>我的位置：</p>
+            <p-breadcrumb [model]="navItems"></p-breadcrumb>
+        </div>
+        <div class="left-nav p-col-2">
+            <p-menu [model]="leftNavs"></p-menu>
+        </div>
+        <div class="right-bd p-col-10">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div class="left-nav">
-      <p-menu [model]="leftNavs"></p-menu>
-    </div>
-    <div class="right-bd">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
 </div>

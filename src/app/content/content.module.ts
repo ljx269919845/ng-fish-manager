@@ -15,7 +15,7 @@ const routes: Routes = [
     data: {
       label: '首页'
     },
-    canActivate: [ LoginService ],
+    // canActivate: [ LoginService ],
     children: [
       {
         path: 'account-manager',
@@ -46,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ ContentComponent, HeaderComponent ],
-  imports: [ CommonModule, RouterModule.forChild(routes), BreadcrumbModule, MenuModule ]
+  declarations: [ContentComponent, HeaderComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), BreadcrumbModule, MenuModule]
 })
 export class ContentModule {}

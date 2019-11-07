@@ -11,9 +11,6 @@ import { TrimDirective } from './trim.directive';
     // PdfPreviewDirective
   ],
   imports: [CommonModule],
-  exports: [
-    PatternInputDirective,
-    TrimDirective
-  ]
+  exports: [PatternInputDirective, TrimDirective]
 })
-export class DirectiveModule { }
+export class DirectiveModule {}

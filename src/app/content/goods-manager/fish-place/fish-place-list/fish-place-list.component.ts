@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fish-place-list.component.scss']
 })
 export class FishPlaceListComponent implements OnInit {
-
+  public placeName: string;
   constructor() { }
 
   ngOnInit() {
