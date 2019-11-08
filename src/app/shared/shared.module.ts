@@ -6,6 +6,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
+import { AccordionModule } from 'primeng/accordion';
+import { FormValidModule } from 'mpr-form-valid';
 
 import { PipeModule } from './pipe/pipe.module';
 import { ComponentModule } from './component/component.module';
@@ -24,7 +26,9 @@ import { ValiditorModule } from './validitor/validitor.module';
     InputTextareaModule,
     DropdownModule,
     TableModule,
-    FormsModule
+    AccordionModule,
+    FormsModule,
+    FormValidModule
   ],
   exports: [
     PipeModule,
@@ -35,7 +39,9 @@ import { ValiditorModule } from './validitor/validitor.module';
     InputTextareaModule,
     DropdownModule,
     TableModule,
-    FormsModule
+    AccordionModule,
+    FormsModule,
+    FormValidModule
   ]
 })
 export class SharedModule {}

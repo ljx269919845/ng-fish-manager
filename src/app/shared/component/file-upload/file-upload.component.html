@@ -1,0 +1,11 @@
+<div class="img-container">
+  <div class="upload-icon-warp" *ngIf="!imgUrl" (click)="handleFileClick()">
+    <div class="upload-icon"></div>
+    <span>{{uploadTxt}}</span>
+    <input type="file" accept="{{accept}}" style="display: none;" #file (change)="handleFileChange($event)">
+  </div>
+  <img src="{{imgUrl}}" *ngIf="imgUrl">
+  <div class="step" *ngIf="stepValue">
+    <p-progressBar value="stepValue"></p-progressBar>
+  </div>
+</div>

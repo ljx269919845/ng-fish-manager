@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { ContentModule } from './content/content.module';
 import { CustomRouteReuseStrategy } from './core/CustomRouteReuseStrategy';
 
-import './mock';
+// import './mock';
 
 const routes: Routes = [
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -41,6 +41,6 @@ const routes: Routes = [
       useClass: CustomRouteReuseStrategy
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

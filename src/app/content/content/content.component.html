@@ -1,18 +1,20 @@
 <div class="content">
     <app-header></app-header>
-    <div class="content-bd p-grid">
+    <div class="content-bd p-grid p-dir-col">
         <div
-            class="content-bread p-col-12"
+            class="content-bread p-col"
             *ngIf="navItems.length > 1"
         >
             <p>我的位置：</p>
             <p-breadcrumb [model]="navItems"></p-breadcrumb>
         </div>
-        <div class="left-nav p-col-2">
+        <div class="p-grid">
+          <div class="left-nav p-col">
             <p-menu [model]="leftNavs"></p-menu>
-        </div>
-        <div class="right-bd p-col-10">
+          </div>
+          <div class="right-bd p-col-10">
             <router-outlet></router-outlet>
+          </div>
         </div>
     </div>
 </div>

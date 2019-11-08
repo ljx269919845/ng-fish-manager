@@ -1,0 +1,13 @@
+.basic {
+  .p-col-1 {
+    text-align: right;
+    padding-right: 2em;
+  }
+  .img-upload {
+    ::ng-deep .img-container {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+  }
+}

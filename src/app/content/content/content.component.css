@@ -57,4 +57,5 @@ p-breadcrumb {
 }
 
 .content .content-bd .left-nav {
+  flex-grow: 0;
 }

@@ -1,8 +1,8 @@
 import { Directive, Input, forwardRef, SimpleChanges, OnChanges } from '@angular/core';
 import { AsyncValidator, AbstractControl, NG_ASYNC_VALIDATORS } from '@angular/forms';
-import { GameCreateUpdateService } from 'src/app/service/game-create-update.service';
+// import { GameCreateUpdateService } from 'src/app/service/game-create-update.service';
 // import { PLATFORM_TYPE } from 'src/app/content/game-create-update/game-create-update.model';
-import { SimpleGameVersion } from 'src/app/service';
+// import { SimpleGameVersion } from 'src/app/service';
 
 const VERSION_GREATER = {
   provide: NG_ASYNC_VALIDATORS,
@@ -21,7 +21,7 @@ export class MainVerisonDirective implements AsyncValidator, OnChanges {
 
   private control: AbstractControl;
 
-  constructor(private gameServ: GameCreateUpdateService) {}
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
@@ -44,17 +44,18 @@ export class MainVerisonDirective implements AsyncValidator, OnChanges {
       return Promise.resolve({ nameRequired: true });
     }
     return new Promise((resolveFunc) => {
-      this.gameServ.getGameListByName(this.gameName, '' + (this.platform || 1)).success((res) => {
-        if (!res.data || !res.data.length) {
-          resolveFunc(null);
-          return;
-        }
-        if (Number(((res.data[0] || {}) as SimpleGameVersion).mainver) >= Number(mainVersion)) {
-          resolveFunc({ maxVersion: { preVersion: res.data[0].mainver } });
-        } else {
-          resolveFunc(null);
-        }
-      });
+      // this.gameServ.getGameListByName(this.gameName, '' + (this.platform || 1)).success((res) => {
+      //   if (!res.data || !res.data.length) {
+      //     resolveFunc(null);
+      //     return;
+      //   }
+      //   if (Number(((res.data[0] || {}) as SimpleGameVersion).mainver) >= Number(mainVersion)) {
+      //     resolveFunc({ maxVersion: { preVersion: res.data[0].mainver } });
+      //   } else {
+      resolveFunc(null);
+      // }
+
+      // });
     });
   }
 }

@@ -1,0 +1,26 @@
+.img-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  height: 100%;
+  .upload-icon-warp {
+    text-align: center;
+    .upload-icon {
+      width: 30px;
+      height: 30px;
+      margin: 0 auto;
+      background-image: url(/assets/images/upload.png);
+    }
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .step {
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+  }
+}
