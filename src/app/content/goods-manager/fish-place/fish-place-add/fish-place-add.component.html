@@ -1,47 +1,107 @@
 <div class="container">
-    <div class="ui-g">
-        <div class="ui-g-12 header">基本信息</div>
-        <div class="ui-g-12">
-            <div class="ui-g-1">名称</div>
-            <input
-                type="text"
-                pInputTxet
+    <p-accordion [multiple]="true">
+        <p-accordionTab
+            header="基本信息"
+            [selected]="true"
+        >
+            <div
+                class="basic"
+                ngForm
             >
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-1">图标</div>
-            <div class="ui-g-11"></div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-1">价格</div>
-            <div class="ui-g-3"></div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-1">钓点</div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-1">简介</div>
-            <div class="ui-g-6">
-                <textarea
-                    [rows]="5"
-                    [cols]="30"
-                    maxlength="500"
-                    required
-                    pInputTextarea
-                    appTrim
-                    autoResize="autoResize"
-                    name="introduce"
-                    [readOnly]="getReadOnly('introduce')"
-                    placeholder="请输入游戏介绍"
-                ></textarea>
+                <div class="p-grid">
+                    <div class="p-col-1">名称</div>
+                    <div class="p-col-10">
+                        <input
+                            type="text"
+                            pInputText
+                            name="name"
+                            [(ngModel)]="fishPlace.name"
+                        >
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-1">图标ICON</div>
+                    <div class="p-col-11 img-upload">
+                        <app-file-upload
+                            name="icon"
+                            [(ngModel)]="fishPlace.icon"
+                        ></app-file-upload>
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-1">简介</div>
+                    <div class="p-col-10">
+                        <textarea
+                            [rows]="8"
+                            [cols]="30"
+                            maxlength="500"
+                            required
+                            pInputTextarea
+                            appTrim
+                            autoResize="autoResize"
+                            name="introduce"
+                            placeholder="请输入简介"
+                            [(ngModel)]="fishPlace.desc"
+                        ></textarea>
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="ui-g">
-        <div class="ui-g-12 header">追加描述</div>
-        <div class="ui-g-12">
-            <div class="ui-g-4"></div>
-            <div class="ui-g-8"></div>
-        </div>
+        </p-accordionTab>
+        <p-accordionTab
+            header="附加描述"
+            [selected]="true"
+        >
+            <div class="extal-container">
+                <div
+                    class="extal-warp p-grid"
+                    *ngFor="let item of fishPlace.extraDesc; let index=index"
+                >
+                    <div class="p-col-3">
+                        <app-file-upload
+                            [name]="'imgUrl'+index"
+                            [(ngModel)]="fishPlace.extraDesc[index].imgUrl"
+                        ></app-file-upload>
+                    </div>
+                    <div class="p-col-6">
+                        <textarea
+                            [rows]="5"
+                            [cols]="30"
+                            maxlength="500"
+                            required
+                            pInputTextarea
+                            appTrim
+                            autoResize="autoResize"
+                            [name]="'desc'+index"
+                            placeholder="请输入简介"
+                            [(ngModel)]="fishPlace.extraDesc[index].desc"
+                        ></textarea>
+                    </div>
+                    <div class="p-col-3">
+                        <button
+                            pButton
+                            label="删除"
+                        ></button>
+                    </div>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        pButton
+                        label="增加描述"
+                        (click)="handleAddFishPlaceDescClick()"
+                    ></button>
+                </div>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
+    <div class="save">
+        <button
+            pButton
+            type="button"
+            label="保存"
+        ></button>
     </div>
 </div>

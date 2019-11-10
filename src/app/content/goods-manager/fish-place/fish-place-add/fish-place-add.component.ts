@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FishPlace, FishPlaceExtraDesc } from 'src/app/service';
+import { clickOnce } from 'src/app/core/cache';
 
 @Component({
   selector: 'app-fish-place-add',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fish-place-add.component.scss']
 })
 export class FishPlaceAddComponent implements OnInit {
+  public fishPlace = new FishPlace();
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  @clickOnce()
+  handleAddFishPlaceDescClick() {
+    const fishPlaceDesc = new FishPlaceExtraDesc();
+    if (!this.fishPlace.extraDesc) {
+      this.fishPlace.extraDesc = [fishPlaceDesc];
+    } else {
+      this.fishPlace.extraDesc.push(fishPlaceDesc);
+    }
   }
-
 }

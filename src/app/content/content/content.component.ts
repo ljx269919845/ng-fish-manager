@@ -47,6 +47,20 @@ const MENUITEMS: Array<MenuItem> = [
     ]
   },
   {
+    label: '分类管理',
+    routerLink: '/content/goods-manager/classify-list',
+    items: [
+      {
+        label: '分类列表',
+        routerLink: '/content/goods-manager/classify-list'
+      },
+      {
+        label: '新增分类',
+        routerLink: '/content/goods-manager/classify-add'
+      }
+    ]
+  },
+  {
     label: '商品管理',
     routerLink: '/content/goods-manager',
     items: [
@@ -79,7 +93,7 @@ const MENUITEMS: Array<MenuItem> = [
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: [ './content.component.css' ]
+  styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
   public navItems = [];
@@ -87,7 +101,7 @@ export class ContentComponent implements OnInit {
   public leftNavs: Array<MenuItem> = MENUITEMS;
   constructor(private router: Router, private activeRouter: ActivatedRoute, private stateServ: AppState) {
     this.lastNavParams = stateServ.get('routerCache') || {};
-    router.events.subscribe((event) => {
+    router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // console.log(router.config);
         const url = event.urlAfterRedirects || event.url;
@@ -96,14 +110,17 @@ export class ContentComponent implements OnInit {
           this.lastNavParams[url.split('?')[0]] = queryParams;
         }
         stateServ.set('routerCache', this.lastNavParams);
-        const urlTree = (event.urlAfterRedirects || event.url).split('?')[0].split('/').reverse();
+        const urlTree = (event.urlAfterRedirects || event.url)
+          .split('?')[0]
+          .split('/')
+          .reverse();
         urlTree.pop(); // first is empty string
         this.navItems = [];
         const destRouts = [];
-        router.config.forEach((elem) => {
+        router.config.forEach(elem => {
           destRouts.push(this.formatRouter(elem));
         });
-        this.buildNavItems(urlTree, destRouts, [ '' ]);
+        this.buildNavItems(urlTree, destRouts, ['']);
         window.scrollTo({
           top: 0,
           left: 0,
@@ -117,14 +134,14 @@ export class ContentComponent implements OnInit {
     const destRouter: any = Object.assign({}, route);
     if (route.children) {
       destRouter.children = [];
-      route.children.forEach((elem) => {
+      route.children.forEach(elem => {
         const formatRoutes = this.formatRouter(elem);
         destRouter.children.push(formatRoutes);
       });
     }
     if (route._loadedConfig) {
       destRouter.destRouter = { routes: [] };
-      route._loadedConfig.routes.forEach((elem) => {
+      route._loadedConfig.routes.forEach(elem => {
         const formatRoutes = this.formatRouter(elem);
         destRouter.destRouter.routes.push(formatRoutes);
       });
@@ -173,8 +190,8 @@ export class ContentComponent implements OnInit {
           this.navItems.push({
             label: this.formartLabel(elem.data.label, url, elem.data.default),
             routerLink: url,
-            command: (itemInfo) => {
-              this.router.navigate([ itemInfo.item.routerLink ], {
+            command: itemInfo => {
+              this.router.navigate([itemInfo.item.routerLink], {
                 queryParams: this.lastNavParams[itemInfo.item.routerLink]
               });
             }
@@ -187,7 +204,7 @@ export class ContentComponent implements OnInit {
       console.error('there is no route match', urlTree, routes, parentUrls);
     }
     if (!urlTree.length && restRoutes && restRoutes.length) {
-      urlTree = [ '' ];
+      urlTree = [''];
     }
     this.buildNavItems(urlTree, restRoutes, parentUrls);
   }

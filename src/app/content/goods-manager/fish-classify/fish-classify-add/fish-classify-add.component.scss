@@ -1,13 +1,38 @@
 .basic {
   .p-col-1 {
     text-align: right;
-    padding-right: 2em;
+    padding-right: 1em;
   }
   .img-upload {
     ::ng-deep .img-container {
-      width: 200px;
-      height: 200px;
-      border: 1px solid #ccc;
+      width: 160px;
+      height: 160px;
+      border: 1px solid #a6a6a6;
     }
+  }
+
+  ::ng-deep .ui-inputtext {
+    width: 70%;
+  }
+}
+
+.extal-warp {
+  ::ng-deep {
+    .ui-inputtext {
+      width: 100%;
+    }
+    .img-container {
+      border: 1px solid #a6a6a6;
+    }
+  }
+}
+
+.save {
+  padding: 30px;
+  button {
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+    width: 200px;
   }
 }

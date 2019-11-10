@@ -1,57 +1,119 @@
 <div class="container">
-  <p-accordion  [multiple]="true">
-    <p-accordionTab header="基本信息" [selected]="true">
-      <div class="p-grid p-dir-col basic">
-        <div class="p-col p-grid p-dir-row">
-          <div class="p-col-1">名称</div>
-          <div class="p-col-10">
-            <input type="text" pInputText name="name" [(ngModel)]="fishClassify.name">
-            <mpr-form-control-valid></mpr-form-control-valid>
-          </div>
-        </div>
-        <div class="p-col p-grid">
-          <div class="p-col-1">图标ICON</div>
-          <div class="p-col-11 img-upload">
-            <app-file-upload name="icon" [(ngModel)]="fishClassify.icon"></app-file-upload>
-            <mpr-form-control-valid></mpr-form-control-valid>
-          </div>
-        </div>
-        <div class="p-col p-grid">
-          <div class="p-col-1">价格</div>
-          <div class="p-col-11">
-            <input type="text" name="price" pInputText [(ngModel)]="fishClassify.price">
-            <mpr-form-control-valid></mpr-form-control-valid>
-          </div>
-        </div>
-        <div class="p-col p-grid">
-          <div class="p-col-1">简介</div>
-          <div class="p-col-11">
-            <textarea [rows]="5" [cols]="30" maxlength="500"
-              required pInputTextarea appTrim autoResize="autoResize"
-              name="introduce" placeholder="请输入简介" [(ngModel)]="fishClassify.desc"></textarea>
-            <mpr-form-control-valid></mpr-form-control-valid>
-          </div>
-        </div>
-      </div>
-    </p-accordionTab>
-    <p-accordionTab header="附加描述" [selected]="true">
-      <div class="extal-container">
-        <div class="extal-warp p-grid" *ngFor="let item of fishClassify.extraDesc; let index=index">
-          <div class="p-col-3">
-            <app-file-upload [(ngModel)]="fishClassify.extraDesc[index].imgUrl"></app-file-upload>
-          </div>
-          <div class="p-col-6">
-            <textarea [rows]="5" [cols]="30" maxlength="500" required pInputTextarea appTrim autoResize="autoResize"
-              name="introduce" placeholder="请输入简介" [(ngModel)]="fishClassify.extraDesc[index].desc"></textarea>
-          </div>
-          <div class="p-col-3">
-            <button pButton label="删除"></button>
-          </div>
-          <div>
-            <button pButton label="增加描述"></button>
-          </div>
-        </div>
-      </div>
-    </p-accordionTab>
-  </p-accordion>
+    <p-accordion [multiple]="true">
+        <p-accordionTab
+            header="基本信息"
+            [selected]="true"
+        >
+            <div
+                class="basic"
+                ngForm
+            >
+                <div class="p-grid">
+                    <div class="p-col-1">名称</div>
+                    <div class="p-col-10">
+                        <input
+                            type="text"
+                            pInputText
+                            name="name"
+                            [(ngModel)]="fishClassify.name"
+                        >
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-1">图标ICON</div>
+                    <div class="p-col-11 img-upload">
+                        <app-file-upload
+                            name="icon"
+                            [(ngModel)]="fishClassify.icon"
+                        ></app-file-upload>
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-1">价格</div>
+                    <div class="p-col-10">
+                        <input
+                            type="text"
+                            name="price"
+                            pInputText
+                            [(ngModel)]="fishClassify.price"
+                        >
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-1">简介</div>
+                    <div class="p-col-10">
+                        <textarea
+                            [rows]="8"
+                            [cols]="30"
+                            maxlength="500"
+                            required
+                            pInputTextarea
+                            appTrim
+                            autoResize="autoResize"
+                            name="introduce"
+                            placeholder="请输入简介"
+                            [(ngModel)]="fishClassify.desc"
+                        ></textarea>
+                        <mpr-form-control-valid></mpr-form-control-valid>
+                    </div>
+                </div>
+            </div>
+        </p-accordionTab>
+        <p-accordionTab
+            header="附加描述"
+            [selected]="true"
+        >
+            <div class="extal-container">
+                <div
+                    class="extal-warp p-grid"
+                    *ngFor="let item of fishClassify.extraDesc; let index=index"
+                >
+                    <div class="p-col-3">
+                        <app-file-upload
+                            [name]="'imgUrl'+index"
+                            [(ngModel)]="fishClassify.extraDesc[index].imgUrl"
+                        ></app-file-upload>
+                    </div>
+                    <div class="p-col-6">
+                        <textarea
+                            [rows]="5"
+                            [cols]="30"
+                            maxlength="500"
+                            required
+                            pInputTextarea
+                            appTrim
+                            autoResize="autoResize"
+                            [name]="'desc'+index"
+                            placeholder="请输入简介"
+                            [(ngModel)]="fishClassify.extraDesc[index].desc"
+                        ></textarea>
+                    </div>
+                    <div class="p-col-3">
+                        <button
+                            pButton
+                            label="删除"
+                        ></button>
+                    </div>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        pButton
+                        label="增加描述"
+                        (click)="handleAddClassifyDescClick()"
+                    ></button>
+                </div>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
+    <div class="save">
+        <button
+            pButton
+            type="button"
+            label="保存"
+        ></button>
+    </div>
 </div>
