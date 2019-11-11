@@ -202,31 +202,49 @@ export class CommonFuncService {
         continue;
       }
       if (object[name] instanceof Array) {
-        attrArray = attrArray.concat(CommonFuncService.converChildArrayToAttr(object[name], name));
+        attrArray = attrArray.concat(CommonFuncService.converChildArrayToAttr(object[name], name, index));
       }
       if (typeof object[name] === 'object') {
-        attrArray = attrArray.concat(CommonFuncService.converChildToAttr(object[name], name + '.', index * 100));
+        attrArray = attrArray.concat(CommonFuncService.converChildToAttr(object[name], name + '.', index));
       }
-      attrArray.push(new AttrObject(name, typeof object[name] === 'string' ? 'string' : 'int', object[name], index));
+      attrArray.push(new AttrObject(name, typeof object[name], object[name], index));
       index = index + 1;
     }
     return attrArray;
   }
 
-  public static converChildToAttr(object: object, parentName: string, index: number) {
+  private static converChildToAttr(object: object, parentName: string, index: number) {
     let attrArray: Array<AttrObject> = [];
     for (const name in object) {
       if (!object.hasOwnProperty(name) || !object[name]) {
         continue;
       }
-      if (typeof object[name] === 'object') {
-        attrArray = attrArray.concat(CommonFuncService.converChildToAttr(object[name], name, index * 100));
+      if (object[name] instanceof Array) {
+        attrArray = attrArray.concat(CommonFuncService.converChildArrayToAttr(object[name], name, index));
+      } else if (typeof object[name] === 'object') {
+        attrArray = attrArray.concat(CommonFuncService.converChildToAttr(object[name], name, index));
+      } else {
+        attrArray.push(new AttrObject(parentName + name, typeof object[name], object[name], index));
       }
-      attrArray.push(
-        new AttrObject(parentName + name, typeof object[name] === 'string' ? 'string' : 'int', object[name], index)
-      );
-      index = index + 1;
     }
+    return attrArray;
+  }
+
+  private static converChildArrayToAttr(object: Array<any>, parentName: string, index: number) {
+    let attrArray: Array<AttrObject> = [];
+    object.forEach((elem, index: number) => {
+      if (elem instanceof Array) {
+        throw new Error(`${elem} can not be a array`);
+      }
+      if (!elem) {
+        return true;
+      }
+      if (typeof elem === 'object') {
+        attrArray = attrArray.concat(CommonFuncService.converChildToAttr(elem, `${parentName}[${index}].`, index));
+      } else {
+        attrArray.push(new AttrObject(`${parentName}[${index}]`, typeof elem, elem, index));
+      }
+    });
     return attrArray;
   }
 }
