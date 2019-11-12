@@ -9,27 +9,20 @@ const POST_LOGIN_URL = '/game-management/account/v1/login';
   providedIn: 'root'
 })
 export class LoginService {
-
-  constructor(
-    private http: HttpJson,
-    private appState: AppState,
-    private router: Router
-  ) { }
+  constructor(private http: HttpJson, private appState: AppState, private router: Router) {}
 
   public login(username: string, password: string) {
-    return this.http.post(POST_LOGIN_URL, {}, {}, { account: username, password })
-      .after((res) => {
-        console.log(res);
-        if (res && res.success) {
-          this.appState.set('user_login_success', '1');
-          console.log(this.appState.get('user_login_success'));
-        }
-      });
+    return this.http.post(POST_LOGIN_URL, {}, {}, { account: username, password }).after((res) => {
+      console.log(res);
+      if (res && res.success) {
+        this.appState.set('user_login_success', '1');
+      }
+    });
   }
 
   public canActivate(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (!this.checkLogin()) {
-      this.router.navigate(['/login']);
+      this.router.navigate([ '/login' ]);
       return false;
     }
     return this.checkLogin();
@@ -41,8 +34,7 @@ export class LoginService {
 
   public clearLogin() {
     this.appState.set('user_login_success', '0');
-    this.appState.set('publisherName', '');
-    this.appState.set('publisher', '');
+    this.appState.set('token', '');
+    this.appState.set('uid', '');
   }
-
 }

@@ -9,6 +9,7 @@ import { FishPlaceListComponent } from './fish-place/fish-place-list/fish-place-
 import { FishPlaceAddComponent } from './fish-place/fish-place-add/fish-place-add.component';
 import { FishClassifyModule } from './fish-classify/fish-classify.module';
 import { FishPlaceModule } from './fish-place/fish-place.module';
+import { SharedModule } from 'src/app/shared';
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [GoodsOnsaleComponent, GoodsForsaleComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), FishClassifyModule, FishPlaceModule]
+  declarations: [ GoodsOnsaleComponent, GoodsForsaleComponent ],
+  imports: [ CommonModule, RouterModule.forChild(routes), SharedModule, FishClassifyModule, FishPlaceModule ]
 })
 export class GoodsManagerModule {}

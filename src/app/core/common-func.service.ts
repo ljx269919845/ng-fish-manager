@@ -247,4 +247,56 @@ export class CommonFuncService {
     });
     return attrArray;
   }
+
+  public static converAttrsToObject(attrs: Array<AttrObject>) {
+    const destObject = {};
+    attrs.forEach((elem) => {
+      if (elem.name.indexOf('.') > 0) {
+        CommonFuncService.convertChildAttrToObject(elem, destObject);
+      } else if (elem.name.indexOf('[') > 0) {
+        const arrKey = elem.name.substring(0, elem.name.indexOf('['));
+        const index = Number(elem.name.substring(elem.name.indexOf('[') + 1, elem.name.indexOf(']')));
+        if (!destObject[arrKey]) {
+          destObject[arrKey] = [];
+        }
+        destObject[arrKey][index] = CommonFuncService.convertToValue(elem);
+      } else {
+        destObject[elem.name] = CommonFuncService.convertToValue(elem);
+      }
+    });
+    return destObject;
+  }
+
+  private static convertChildAttrToObject(attr: AttrObject, destObject: object) {
+    const nameKeys = attr.name.split('.');
+    // gernate parent object
+    let childObject = destObject;
+    for (let i = 0; i < nameKeys.length - 1; i++) {
+      if (nameKeys[i].indexOf('[') > 0) {
+        const arrKey = nameKeys[i].substring(0, nameKeys[i].indexOf('['));
+        if (!(arrKey in childObject)) {
+          childObject[arrKey] = [];
+        }
+        const index = Number(nameKeys[i].substring(nameKeys[i].indexOf('[') + 1, nameKeys[i].indexOf(']')));
+        if (!childObject[arrKey][index]) {
+          childObject[arrKey][index] = {};
+        }
+        childObject = childObject[arrKey][index];
+      } else if (!(nameKeys[i] in childObject)) {
+        childObject[nameKeys[i]] = {};
+        childObject = childObject[nameKeys[i]];
+      } else {
+        childObject = childObject[nameKeys[i]];
+      }
+    }
+    const attrKey = nameKeys[nameKeys.length - 1];
+    childObject[attrKey] = CommonFuncService.convertToValue(attr);
+  }
+
+  private static convertToValue(attr: AttrObject) {
+    if (attr.type === 'number') {
+      return Number(attr.val);
+    }
+    return attr.val;
+  }
 }

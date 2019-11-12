@@ -10,7 +10,7 @@ import { clickWiatHttp } from '../../core/cache';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit {
   public errorMsg = {
@@ -27,14 +27,15 @@ export class LoginComponent implements OnInit {
   };
   public errorFlag: string;
 
-  @ViewChild(NgForm, { read: NgForm, static: true }) form: NgForm;
+  @ViewChild(NgForm, { read: NgForm, static: true })
+  form: NgForm;
 
   constructor(
     private router: Router,
     private loginService: LoginService,
     private globalValidServ: GlobalValidService,
     private stateServ: AppState
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginService.clearLogin();
@@ -44,16 +45,20 @@ export class LoginComponent implements OnInit {
   handleLoginClick() {
     if (this.globalValidServ.validAll()) {
       console.log(this.userInfo);
-      this.loginService.login(this.userInfo.username, this.userInfo.password)
+      this.loginService
+        .login(this.userInfo.username, this.userInfo.password)
         .success((res) => {
           this.errorFlag = '';
-          this.stateServ.set('publisherName', res.data && res.data.name);
-          this.stateServ.set('publisher', res.data && res.data.unificationId);
-          this.router.navigate(['/content']);
-        }).error((res: ResponseModel) => {
+          this.stateServ.set('uid', res.data && res.data.uid);
+          this.stateServ.set('token', res.data && res.data.token);
+          this.stateServ.set('nickname', res.data && res.data.nickname);
+          this.stateServ.set('accountrole', res.data && res.data.accountrole);
+          this.router.navigate([ '/content' ]);
+        })
+        .error((res: ResponseModel) => {
           console.log(res);
           this.errorFlag = res.msg;
-          this.router.navigate(['/login']);
+          this.router.navigate([ '/login' ]);
         });
     }
   }
