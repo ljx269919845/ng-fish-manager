@@ -1,3 +1,4 @@
+import { AccountService } from './account.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +10,6 @@ import { FishPlaceService } from './fish-place.service';
 @NgModule({
   declarations: [],
   imports: [ CommonModule ],
-  providers: [ LoginService, UeditorUploadService, FishClassifyService, FishPlaceService ]
+  providers: [ LoginService, UeditorUploadService, FishClassifyService, FishPlaceService, AccountService ]
 })
 export class ServiceModule {}

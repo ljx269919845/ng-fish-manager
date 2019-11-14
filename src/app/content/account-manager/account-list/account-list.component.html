@@ -1,1 +1,15 @@
-<p>account-list works!</p>
+<div class="container">
+  <div class="search p-grid" ngForm>
+    <div class="p-col-4">
+      <label class="title">用户名/手机号</label>
+      <input class="keyword" name="name" type="text" pInputText placeholder="请输入用户名或者手机号" [(ngModel)]="search.name">
+    </div>
+    <div class="p-col-8">
+      <label class="title">注册时间</label>
+      <app-begin-end-date name="date" [(ngModel)]="search.date"></app-begin-end-date>
+    </div>
+  </div>
+  <div class="table">
+    <p-table></p-table>
+  </div>
+</div>

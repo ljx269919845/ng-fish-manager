@@ -12,6 +12,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { PdfPreviewComponent } from './pdf-preview/pdf-preview.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { BeginEndDateComponent } from './begin-end-date/begin-end-date.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CalendarModule, ProgressBarModule ],
@@ -22,7 +23,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     DialogComponent,
     PdfPreviewComponent,
     CalendarComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    BeginEndDateComponent
   ],
   exports: [
     PagingBoxComponent,
@@ -30,7 +32,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     LoaingDataComponent,
     DialogComponent,
     CalendarComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    BeginEndDateComponent
   ]
 })
 export class ComponentModule {}
