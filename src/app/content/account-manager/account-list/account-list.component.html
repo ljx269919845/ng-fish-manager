@@ -10,6 +10,53 @@
     </div>
   </div>
   <div class="table">
-    <p-table></p-table>
+    <p-table [value]="accounts">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>序号</th>
+          <th>昵称</th>
+          <th>手机号</th>
+          <th>APPID</th>
+          <td>性别</td>
+          <td>角色</td>
+          <th>注册时间</th>
+          <th>操作</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{(pageInfo.page-1)*pageInfo.rows + rowIndex+1}}</td>
+          <td>
+            <div>
+              <img src="rowData.user">
+              <span>{{rowData.nickName}}</span>
+            </div>
+          </td>
+          <td>
+            {{rowData.mobile}}
+          </td>
+          <td>
+            {{rowData.appid}}
+          </td>
+          <td>
+            {{rowData.sex}}
+          </td>
+          <td>
+            {{rowData.userRole}}
+          </td>
+          <td>
+            {{rowData.createTime}}
+          </td>
+          <td>
+            <a (click)="handleResetClick(rowData)">重置密码</a>
+            <a (click)="handleChangeRole(rowData)">角色配置</a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <app-loaing-data [data]="accounts"></app-loaing-data>
+    <tl-paging-box *ngIf="pageInfo&&pageInfo.totalRecords" [pagingBoxObj]="pageInfo"
+      (OnPageChange)="handlePageChange($event)"></tl-paging-box>
   </div>
+  <p-confirmDialog header="重置密码" icon="pi pi-exclamation-triangle" acceptLabel="确定" rejectLabel="取消"></p-confirmDialog>
 </div>

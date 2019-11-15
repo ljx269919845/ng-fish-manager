@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { debounceTime } from 'rxjs/operators';
 import { AccountService } from 'src/app/service';
 import { PagingBoxObj } from 'src/app/shared/component/paging-box';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-account-list',
@@ -18,7 +19,7 @@ export class AccountListComponent implements OnInit {
   public accounts = [];
   @ViewChild(NgForm, { static: true })
   searhFrom: NgForm;
-  constructor(private accoutServ: AccountService) {}
+  constructor(private accoutServ: AccountService, private confirmServ: ConfirmationService) {}
 
   ngOnInit() {
     this.searhFrom.valueChanges.pipe(debounceTime(1000)).subscribe((value) => {
@@ -41,4 +42,18 @@ export class AccountListComponent implements OnInit {
         this.accounts = res.data.accounts;
       });
   }
+
+  handlePageChange(pageInfo: PagingBoxObj) {
+    this.pageInfo.page = pageInfo.page;
+    this.loadAccounts();
+  }
+
+  handleResetClick(account) {
+    this.confirmServ.confirm({
+      message: '确认重置密码？',
+      accept: () => {}
+    });
+  }
+
+  handleChangeRole(account) {}
 }

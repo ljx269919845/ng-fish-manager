@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormValidModule } from 'mpr-form-valid';
 
 import { PipeModule } from './pipe/pipe.module';
@@ -30,7 +31,8 @@ import { ValiditorModule } from './validitor/validitor.module';
     AccordionModule,
     FormsModule,
     FormValidModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmDialogModule
   ],
   exports: [
     PipeModule,
@@ -44,7 +46,8 @@ import { ValiditorModule } from './validitor/validitor.module';
     AccordionModule,
     FormsModule,
     FormValidModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmDialogModule
   ]
 })
 export class SharedModule {}
